@@ -1,0 +1,158 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema zitcom_ga_db
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema zitcom_ga_db
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `zitcom_ga_db` DEFAULT CHARACTER SET utf8 ;
+USE `zitcom_ga_db` ;
+
+-- -----------------------------------------------------
+-- Table `zitcom_ga_db`.`Kon`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `zitcom_ga_db`.`Kon` (
+  `kon_id` INT(1) NOT NULL AUTO_INCREMENT,
+  `kon_type` VARCHAR(7) NOT NULL,
+  PRIMARY KEY (`kon_id`),
+  UNIQUE INDEX `Kon_type_UNIQUE` (`kon_type` ASC)  ,
+  UNIQUE INDEX `kon_id_UNIQUE` (`kon_id` ASC)  )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `zitcom_ga_db`.`Aar`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `zitcom_ga_db`.`Aar` (
+  `aarstal_id` INT(2) NOT NULL AUTO_INCREMENT,
+  `aarstal` INT(4) NOT NULL,
+  PRIMARY KEY (`aarstal_id`),
+  UNIQUE INDEX `Aarstal_UNIQUE` (`aarstal` ASC)  )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `zitcom_ga_db`.`Alder`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `zitcom_ga_db`.`Alder` (
+  `aldersgruppe_id` INT(1) NOT NULL AUTO_INCREMENT,
+  `aldersgruppe` VARCHAR(9) NOT NULL,
+  PRIMARY KEY (`aldersgruppe_id`),
+  UNIQUE INDEX `Aldersgruppe_UNIQUE` (`aldersgruppe` ASC)  )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `zitcom_ga_db`.`Kommune`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `zitcom_ga_db`.`Kommune` (
+  `kommune_id` INT(2) NOT NULL AUTO_INCREMENT,
+  `kommune_navn` VARCHAR(20) NOT NULL,
+  UNIQUE INDEX `Navn_UNIQUE` (`kommune_navn` ASC)  ,
+  PRIMARY KEY (`kommune_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `zitcom_ga_db`.`Flytning`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `zitcom_ga_db`.`Flytning` (
+  `nummer` INT NOT NULL AUTO_INCREMENT,
+  `antal` INT(5) NOT NULL,
+  `kon_id` INT(1) NOT NULL,
+  `aarstal_id` INT(2) NOT NULL,
+  `aldersgruppe_id` INT(1) NOT NULL,
+  `kommune_til_id` INT(2) NOT NULL,
+  `kommune_fra_id` INT(2) NOT NULL,
+  INDEX `fk_Flytning_Kon1_idx` (`kon_id` ASC)  ,
+  INDEX `fk_Flytning_Aar1_idx` (`aarstal_id` ASC)  ,
+  INDEX `fk_Flytning_Alder1_idx` (`aldersgruppe_id` ASC)  ,
+  INDEX `fk_Flytning_Kommune1_idx` (`kommune_til_id` ASC)  ,
+  INDEX `fk_Flytning_Kommune2_idx` (`kommune_fra_id` ASC)  ,
+  PRIMARY KEY (`nummer`),
+  CONSTRAINT `fk_Flytning_Kon1`
+    FOREIGN KEY (`kon_id`)
+    REFERENCES `zitcom_ga_db`.`Kon` (`kon_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Flytning_Aar1`
+    FOREIGN KEY (`aarstal_id`)
+    REFERENCES `zitcom_ga_db`.`Aar` (`aarstal_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Flytning_Alder1`
+    FOREIGN KEY (`aldersgruppe_id`)
+    REFERENCES `zitcom_ga_db`.`Alder` (`aldersgruppe_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Flytning_Kommune1`
+    FOREIGN KEY (`kommune_til_id`)
+    REFERENCES `zitcom_ga_db`.`Kommune` (`kommune_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Flytning_Kommune2`
+    FOREIGN KEY (`kommune_fra_id`)
+    REFERENCES `zitcom_ga_db`.`Kommune` (`kommune_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `zitcom_ga_db`.`Bevaegelse`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `zitcom_ga_db`.`Bevaegelse` (
+  `bevaegelse_id` INT(2) NOT NULL AUTO_INCREMENT,
+  `bevaegelse_typer` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`bevaegelse_id`),
+  UNIQUE INDEX `Bevaegelsesart_typer_UNIQUE` (`bevaegelse_typer` ASC)  )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `zitcom_ga_db`.`Flytningstype`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `zitcom_ga_db`.`Flytningstype` (
+  `nummer` INT NOT NULL AUTO_INCREMENT,
+  `antal` INT(5) NOT NULL,
+  `kon_id` INT(1) NOT NULL,
+  `aarstal_id` INT(2) NOT NULL,
+  `kommune_id` INT(2) NOT NULL,
+  `bevaegelse_id` INT(2) NOT NULL,
+  INDEX `fk_Flytningstype_Bevaegelse1_idx` (`bevaegelse_id` ASC)  ,
+  INDEX `fk_Flytningstype_Kon1_idx` (`kon_id` ASC)  ,
+  INDEX `fk_Flytningstype_Aar1_idx` (`aarstal_id` ASC)  ,
+  INDEX `fk_Flytningstype_Kommune1_idx` (`kommune_id` ASC)  ,
+  PRIMARY KEY (`nummer`),
+  CONSTRAINT `fk_Flytningstype_Bevaegelse1`
+    FOREIGN KEY (`bevaegelse_id`)
+    REFERENCES `zitcom_ga_db`.`Bevaegelse` (`bevaegelse_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Flytningstype_Kon1`
+    FOREIGN KEY (`kon_id`)
+    REFERENCES `zitcom_ga_db`.`Kon` (`kon_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Flytningstype_Aar1`
+    FOREIGN KEY (`aarstal_id`)
+    REFERENCES `zitcom_ga_db`.`Aar` (`aarstal_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Flytningstype_Kommune1`
+    FOREIGN KEY (`kommune_id`)
+    REFERENCES `zitcom_ga_db`.`Kommune` (`kommune_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
