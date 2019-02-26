@@ -1,5 +1,6 @@
 package UI;
 
+import Query.Selection;
 import Session.Config;
 
 import java.sql.Connection;
@@ -12,6 +13,7 @@ public class Menu {
 
     private boolean quit = false;
     Config cfg = new Config();
+    Selection select = new Selection();
 
 
     public void mainMenu() {
@@ -264,16 +266,17 @@ public class Menu {
 
         // List of settings here
         System.out.println("Number of results:\t" + cfg.getRows() + " (0 = ALL)");
-        System.out.println("Year:\t\t\t" + cfg.getYear());
-        System.out.println("Gender:\t\t\t" + cfg.getGender());
+        System.out.println("Year:\t\t\t" + select.settingValues("aarstal","aarstal_id","Aar", cfg.getYear(), cfg.getConnection()));
+        System.out.println("Gender:\t\t\t" + select.settingValues("kon_type", "kon_id", "Kon", cfg.getGender(), cfg.getConnection()));
 
         if (cfg.getChosenMenu() == 1) {
-            System.out.println("Age bracket:\t\t" + cfg.getAgeBracket());
-            System.out.println("City (TO):\t\t" + cfg.getToCity());
-            System.out.println("City (FROM):\t\t" + cfg.getFromCity());
+            System.out.println("Age bracket:\t\t" + select.settingValues("aldersgruppe","aldersgruppe_id","Alder", cfg.getAgeBracket(), cfg.getConnection()));
+            System.out.println("City (FROM):\t\t" + select.settingValues("kommune_navn","kommune_id","Kommune", cfg.getFromCity(), cfg.getConnection()));
+            System.out.println("City (TO):\t\t" + select.settingValues("kommune_navn","kommune_id","Kommune", cfg.getToCity(), cfg.getConnection()));
+
         } else {
-            System.out.println("City:\t\t\t" + cfg.getMovementCity());
-            System.out.println("Movement type:\t\t" + cfg.getMovementType());
+            System.out.println("City:\t\t\t" + select.settingValues("kommune_navn","kommune_id","Kommune", cfg.getMovementCity(), cfg.getConnection()));
+            System.out.println("Movement type:\t\t" + cfg.getMovementType() + " MANGLER AT IMPORTERE");
         }
 
         System.out.println(
