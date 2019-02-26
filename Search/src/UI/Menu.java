@@ -39,24 +39,24 @@ public class Menu {
                         chooseYear();
                         break;
                     case 4:
-                        // CHOSE GENDER
-                        System.out.println("Nothing here yet :)");
-                        Input.pressToContinue();
+                        // CHANGE GENDER
+                        clearScreen();
+                        chooseGender();
                         break;
                     case 5:
                         // CHOSE AGE GROUP
-                        System.out.println("Nothing here yet :)");
-                        Input.pressToContinue();
+                        clearScreen();
+                        chooseAgeBracket();
                         break;
                     case 6:
                         // CHOSE FROM - CITY
-                        System.out.println("Nothing here yet :)");
-                        Input.pressToContinue();
+                        clearScreen();
+                        chooseFromCity();
                         break;
                     case 7:
                         // CHOSE TO - CITY
-                        System.out.println("Nothing here yet :)");
-                        Input.pressToContinue();
+                        clearScreen();
+                        chooseToCity();
                         break;
                     case 8:
                         // SHOW TABLES FROM SETTINGS
@@ -95,19 +95,19 @@ public class Menu {
                         chooseYear();
                         break;
                     case 4:
-                        // CHOSE GENDER
-                        System.out.println("Nothing here yet :)");
-                        Input.pressToContinue();
+                        // CHANGE GENDER
+                        clearScreen();
+                        chooseGender();
                         break;
                     case 5:
                         // CITY
-                        System.out.println("Nothing here yet :)");
-                        Input.pressToContinue();
+                        clearScreen();
+                        chooseCity();
                         break;
                     case 6:
                         // MOVEMENT TYPE
-                        System.out.println("Nothing here yet :)");
-                        Input.pressToContinue();
+                        clearScreen();
+                        chooseMovementType();
                         break;
                     case 8:
                         // SHOW TABLES FROM SETTINGS
@@ -187,9 +187,42 @@ public class Menu {
         cfg.setRows(Input.getIntFromConsole());
     }
     public void chooseYear(){
-        System.out.println("Vælg Årstal");
-        cfg.setYear(Input.getIntFromConsole());
+        System.out.println("What year do you want?");
+        cfg.setYear(Input.getIntRangeFromConsole(1, 16));
     }
+
+    public void chooseGender(){
+        System.out.println("What gender do you want?");
+        cfg.setGender(Input.getIntRangeFromConsole(1, 2));
+    }
+
+    public void chooseCity(){
+        System.out.println("What city do you want?");
+        cfg.setMovementCity(Input.getIntRangeFromConsole(1, 99));
+    }
+
+    public void chooseToCity(){
+        System.out.println("What city do you want?");
+        cfg.setToCity(Input.getIntRangeFromConsole(1, 99));
+    }
+
+    public void chooseFromCity(){
+        System.out.println("What city do you want?");
+        cfg.setFromCity(Input.getIntRangeFromConsole(1, 99));
+    }
+
+    public void chooseMovementType(){
+        System.out.println("What movement type do you want?");
+        cfg.setMovementType(Input.getIntRangeFromConsole(1, 99));
+    }
+
+    public void chooseAgeBracket(){
+        System.out.println("What movement type do you want?");
+        cfg.setAgeBracket(Input.getIntRangeFromConsole(1, 99));
+    }
+
+
+
     private void dbSearch(){
 
         try{

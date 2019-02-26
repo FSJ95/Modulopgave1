@@ -15,14 +15,13 @@ public class Config {
 
     // Search settings.
     private int rows = 0;
-    private String ageBracket = "";
-    private String type = "til/fra flytning";
+    private int ageBracket = "";
     private int year = 0;
-    private String gender = "";
-    private String toCity = "";
-    private String fromCity = "";
-    private String movementCity = "";
-    private String movementType = "";
+    private int gender = "";
+    private int toCity = "";
+    private int fromCity = "";
+    private int movementCity = "";
+    private int movementType = "";
     private int chosenMenu = 1;
 
     // Konstruktor.
@@ -62,20 +61,12 @@ public class Config {
         this.rows = rows;
     }
 
-    public String ageBracket() {
+    public String getAgeBracket() {
         return ageBracket;
     }
 
-    public void ageBracket(String ageBracket) {
+    public void setAgeBracket(String ageBracket) {
         this.ageBracket = ageBracket;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public int getYear() {
