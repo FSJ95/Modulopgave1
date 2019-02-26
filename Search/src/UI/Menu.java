@@ -32,35 +32,43 @@ public class Menu {
                         // CHANGE LIMIT
                         clearScreen();
                         chooseLimit();
+                        break;
                     case 3:
                         // CHANGE YEAR
                         clearScreen();
                         chooseYear();
+                        break;
                     case 4:
                         // CHOSE GENDER
                         System.out.println("Nothing here yet :)");
                         Input.pressToContinue();
+                        break;
                     case 5:
                         // CHOSE AGE GROUP
                         System.out.println("Nothing here yet :)");
                         Input.pressToContinue();
+                        break;
                     case 6:
                         // CHOSE FROM - CITY
                         System.out.println("Nothing here yet :)");
                         Input.pressToContinue();
+                        break;
                     case 7:
                         // CHOSE TO - CITY
                         System.out.println("Nothing here yet :)");
                         Input.pressToContinue();
+                        break;
                     case 8:
                         // SHOW TABLES FROM SETTINGS
                         System.out.println("Nothing here yet :)");
                         Input.pressToContinue();
+                        break;
                     case 9:
                         // SHOW ALL SETTINGS
                         clearScreen();
                         showSettings();
                         Input.pressToContinue();
+                        break;
                     case 0:
                         // QUIT PROGRAM
                         quit = true;
@@ -80,31 +88,38 @@ public class Menu {
                         // CHANGE LIMIT
                         clearScreen();
                         chooseLimit();
+                        break;
                     case 3:
                         // CHANGE YEAR
                         clearScreen();
                         chooseYear();
+                        break;
                     case 4:
                         // CHOSE GENDER
                         System.out.println("Nothing here yet :)");
                         Input.pressToContinue();
+                        break;
                     case 5:
                         // CITY
                         System.out.println("Nothing here yet :)");
                         Input.pressToContinue();
+                        break;
                     case 6:
                         // MOVEMENT TYPE
                         System.out.println("Nothing here yet :)");
                         Input.pressToContinue();
+                        break;
                     case 8:
                         // SHOW TABLES FROM SETTINGS
                         System.out.println("Nothing here yet :)");
                         Input.pressToContinue();
+                        break;
                     case 9:
                         // SHOW ALL SETTINGS
                         clearScreen();
                         showSettings();
                         Input.pressToContinue();
+                        break;
                     case 0:
                         // QUIT PROGRAM
                         quit = true;
