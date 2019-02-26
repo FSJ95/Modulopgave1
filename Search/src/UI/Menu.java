@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.*;
-import java.util.*;
 
 
 public class Menu {
@@ -15,90 +14,152 @@ public class Menu {
     Config cfg = new Config();
 
 
-    public void mainMenu(){
+    public void mainMenu() {
 
+        while (!quit) {
 
-        while (!quit){
-            clearScreen();
-            showMenu();
-
-            int choice = Input.getIntRangeFromConsole(0, 9);
-
-            if(choice==0){
-                // QUIT PROGRAM
-                quit = true;
-            }
-
-            else if(choice==1){
-                // CHANGE LIMIT
+            if (cfg.getChosenMenu() == 1) {
                 clearScreen();
-                chooseLimit();
-            }
+                showToFromMenu();
 
-            else if(choice==2) {
-                // CHANGE YEAR
+
+                switch (Input.getIntRangeFromConsole(0, 9)) {
+                    case 1:
+                        // CHANGE MENU
+                        changeMenu();
+                        break;
+                    case 2:
+                        // CHANGE LIMIT
+                        clearScreen();
+                        chooseLimit();
+                    case 3:
+                        // CHANGE YEAR
+                        clearScreen();
+                        chooseYear();
+                    case 4:
+                        // CHOSE GENDER
+                        System.out.println("Nothing here yet :)");
+                        Input.pressToContinue();
+                    case 5:
+                        // CHOSE AGE GROUP
+                        System.out.println("Nothing here yet :)");
+                        Input.pressToContinue();
+                    case 6:
+                        // CHOSE FROM - CITY
+                        System.out.println("Nothing here yet :)");
+                        Input.pressToContinue();
+                    case 7:
+                        // CHOSE TO - CITY
+                        System.out.println("Nothing here yet :)");
+                        Input.pressToContinue();
+                    case 8:
+                        // SHOW TABLES FROM SETTINGS
+                        System.out.println("Nothing here yet :)");
+                        Input.pressToContinue();
+                    case 9:
+                        // SHOW ALL SETTINGS
+                        clearScreen();
+                        showSettings();
+                        Input.pressToContinue();
+                    case 0:
+                        // QUIT PROGRAM
+                        quit = true;
+
+                }
+
+            } else if (cfg.getChosenMenu() == 2) {
                 clearScreen();
-                chooseYear();
-            }
-            else if(choice==3) {
-                // CHOSE GENDER
-                System.out.println("Nothing here yet :)");
-                Input.pressToContinue();
+                showMovementMenu();
 
-            }
-            else if(choice==4) {
-                // CHOSE AGE GROUP
-                System.out.println("Nothing here yet :)");
-                Input.pressToContinue();
+                switch (Input.getIntRangeFromConsole(0, 9)) {
+                    case 1:
+                        // CHANGE MENU
+                        changeMenu();
+                        break;
+                    case 2:
+                        // CHANGE LIMIT
+                        clearScreen();
+                        chooseLimit();
+                    case 3:
+                        // CHANGE YEAR
+                        clearScreen();
+                        chooseYear();
+                    case 4:
+                        // CHOSE GENDER
+                        System.out.println("Nothing here yet :)");
+                        Input.pressToContinue();
+                    case 5:
+                        // CITY
+                        System.out.println("Nothing here yet :)");
+                        Input.pressToContinue();
+                    case 6:
+                        // MOVEMENT TYPE
+                        System.out.println("Nothing here yet :)");
+                        Input.pressToContinue();
+                    case 8:
+                        // SHOW TABLES FROM SETTINGS
+                        System.out.println("Nothing here yet :)");
+                        Input.pressToContinue();
+                    case 9:
+                        // SHOW ALL SETTINGS
+                        clearScreen();
+                        showSettings();
+                        Input.pressToContinue();
+                    case 0:
+                        // QUIT PROGRAM
+                        quit = true;
+                }
 
-            }
-            else if(choice==5) {
-                // CHOSE FROM - CITY
-                System.out.println("Nothing here yet :)");
-                Input.pressToContinue();
 
-            }
-            else if(choice==6) {
-                // CHOSE TO - CITY
-                System.out.println("Nothing here yet :)");
-                Input.pressToContinue();
-            }
-            else if(choice==8){
-                // SHOW TABLES FROM SETTINGS
-                System.out.println("Nothing here yet :)");
-                Input.pressToContinue();
-            }
-            else if(choice==9){
-
-                clearScreen();
-                showSettings();
-                Input.pressToContinue();
-            }
-
-            else if(choice==7){
-
-                dbSearch();
-                Input.pressToContinue();
             }
         }
     }
 
-    private void showMenu() {
+
+    private void showToFromMenu() {
         System.out.println(
-                        "\n   Search tool   \n" +
+                        "\nSEARCH TOOL (TO/FROM CITYS)\n" +
                         "-------------------\n" +
-                        "1. Number of results \n" +
-                        "2. Year \n" +
-                        "3. Gender  \n" +
-                        "4. Age group  \n" +
-                        "5. City moving from  \n" +
-                        "6. City moving to1  \n" +
+                        "1. Change menu \n" +
                         "-------------------\n" +
-                        "7. **TEST REMOVE BEFORE TURN IN**  \n" +
-                        "8. Show results\n" +
-                        "9. Show settings\n" +
+                        "2. Number of results. \n" +
+                        "3. Year. \n" +
+                        "4. Gender.  \n" +
+                        "5. Age group.  \n" +
+                        "6. City moving from.  \n" +
+                        "7. City moving to.  \n" +
                         "-------------------\n" +
-                        "0. Exit program \n");
+                        "8. Show results.\n" +
+                        "9. Show settings.\n" +
+                        "-------------------\n" +
+                        "0. Exit program. \n");
+    }
+
+    private void showMovementMenu() {
+        System.out.println(
+                        "\nSEARCH TOOL (MOVEMENT TYPE)\n" +
+                        "-------------------\n" +
+                        "1. Change menu \n" +
+                        "-------------------\n" +
+                        "2. Number of results. \n" +
+                        "3. Year. \n" +
+                        "4. Gender.  \n" +
+                        "5. City.  \n" +
+                        "6. Movement type.  \n" +
+                        "-------------------\n" +
+                        "8. Show results.\n" +
+                        "9. Show settings.\n" +
+                        "-------------------\n" +
+                        "0. Exit program. \n");
+    }
+
+    public void changeMenu(){
+        if (cfg.getChosenMenu()==1){
+            cfg.setChosenMenu(2);
+        } else {
+            cfg.setChosenMenu(1);
+        }
+
     }
 
     public static void clearScreen() {

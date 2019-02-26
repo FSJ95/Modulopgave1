@@ -15,12 +15,15 @@ public class Config {
 
     // Search settings.
     private int rows = 0;
-    private String agebracket = "";
+    private String ageBracket = "";
     private String type = "til/fra flytning";
     private int year = 0;
     private String gender = "";
     private String toCity = "";
     private String fromCity = "";
+    private String movementCity = "";
+    private String movementType = "";
+    private int chosenMenu = 1;
 
     // Konstruktor.
     public Config() {
@@ -34,6 +37,23 @@ public class Config {
         this.sqlPassword = sqlPassword;
     }
 
+
+    // Metode der returnerer connection.
+    public Connection getConnection() {
+        try {
+
+            conn = DriverManager.getConnection(sqlHost, sqlUsername, sqlPassword);
+
+        } catch (SQLException e) {
+
+            System.out.println("Exception: " + e);
+
+        }
+
+        return conn;
+
+    }
+
     public int getRows() {
         return rows;
     }
@@ -42,12 +62,12 @@ public class Config {
         this.rows = rows;
     }
 
-    public String getAgebracket() {
-        return agebracket;
+    public String ageBracket() {
+        return ageBracket;
     }
 
-    public void setAgebracket(String agebracket) {
-        this.agebracket = agebracket;
+    public void ageBracket(String ageBracket) {
+        this.ageBracket = ageBracket;
     }
 
     public String getType() {
@@ -90,20 +110,29 @@ public class Config {
         this.fromCity = fromCity;
     }
 
-    // Metode der returnerer connection.
-    public Connection getConnection() {
-        try {
-
-            conn = DriverManager.getConnection(sqlHost, sqlUsername, sqlPassword);
-
-        } catch (SQLException e) {
-
-            System.out.println("Exception: " + e);
-
-        }
-
-        return conn;
-
+    public String getMovementCity() {
+        return movementCity;
     }
+
+    public void setMovementCity(String movementCity) {
+        this.movementCity = movementCity;
+    }
+
+    public String getMovementType() {
+        return movementType;
+    }
+
+    public void setMovementType(String movementType) {
+        this.movementType = movementType;
+    }
+
+    public int getChosenMenu() {
+        return chosenMenu;
+    }
+
+    public void setChosenMenu(int chosenMenu) {
+        this.chosenMenu = chosenMenu;
+    }
+
 }
 
