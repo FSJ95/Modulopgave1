@@ -9,17 +9,52 @@ public class Input {
 
     public static int getIntFromConsole(){
 
+        int choice;
+
         while (true) {
+
             System.out.print("> ");
-            sc.nextLine();
-            if (sc.hasNextInt()) {
+
+            try {
+                choice = Integer.parseInt(sc.nextLine());
                 break;
-            } else {
-                System.out.println("Please enter an integer.");
+            } catch(NumberFormatException e) {
+
+                System.out.println("\nPlease type a number.");
+
+            }
+        }
+        return choice;
+    }
+
+    public static int getIntRangeFromConsole(int x, int y){
+
+        int choice;
+
+        while (true) {
+
+            System.out.print("> ");
+
+            try {
+                int userInput = Integer.parseInt(sc.nextLine());
+
+                if (userInput >= x && userInput <= y)
+                {
+                    choice = userInput;
+                    break;
+                }
+
+                System.out.println("\nPlease type a number between " + x + " and " + y + ".");
+
+            } catch(NumberFormatException e) {
+
+                System.out.println("\nPlease type a number between " + x + " and " + y + ".");
+
             }
 
         }
-        return sc.nextInt();
+
+        return choice;
     }
 
     public static void pressToContinue()

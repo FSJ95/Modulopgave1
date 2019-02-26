@@ -19,11 +19,10 @@ public class Menu {
 
 
         while (!quit){
-
-
+            clearScreen();
             showMenu();
 
-            int choice = Input.getIntFromConsole();
+            int choice = Input.getIntRangeFromConsole(0, 10);
 
             if(choice==0){
                 quit = true;
@@ -34,19 +33,20 @@ public class Menu {
                 chooseLimit();
             }
 
-            else if(choice==2){
+            else if(choice==2) {
                 clearScreen();
                 chooseYear();
-            }
-            else if(choice==5){
-
-                dbSearch();
             }
 
             else if(choice==9){
                 clearScreen();
                 showSettings();
                 Input.pressToContinue();
+            }
+
+            else if(choice==111){
+
+                dbSearch();
             }
         }
     }
