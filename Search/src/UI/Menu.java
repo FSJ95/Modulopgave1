@@ -22,31 +22,63 @@ public class Menu {
             clearScreen();
             showMenu();
 
-            int choice = Input.getIntRangeFromConsole(0, 10);
+            int choice = Input.getIntRangeFromConsole(0, 9);
 
             if(choice==0){
+                // QUIT PROGRAM
                 quit = true;
             }
 
             else if(choice==1){
+                // CHANGE LIMIT
                 clearScreen();
                 chooseLimit();
             }
 
             else if(choice==2) {
+                // CHANGE YEAR
                 clearScreen();
                 chooseYear();
             }
+            else if(choice==3) {
+                // CHOSE GENDER
+                System.out.println("Nothing here yet :)");
+                Input.pressToContinue();
 
+            }
+            else if(choice==4) {
+                // CHOSE AGE GROUP
+                System.out.println("Nothing here yet :)");
+                Input.pressToContinue();
+
+            }
+            else if(choice==5) {
+                // CHOSE FROM - CITY
+                System.out.println("Nothing here yet :)");
+                Input.pressToContinue();
+
+            }
+            else if(choice==6) {
+                // CHOSE TO - CITY
+                System.out.println("Nothing here yet :)");
+                Input.pressToContinue();
+            }
+            else if(choice==8){
+                // SHOW TABLES FROM SETTINGS
+                System.out.println("Nothing here yet :)");
+                Input.pressToContinue();
+            }
             else if(choice==9){
+
                 clearScreen();
                 showSettings();
                 Input.pressToContinue();
             }
 
-            else if(choice==111){
+            else if(choice==7){
 
                 dbSearch();
+                Input.pressToContinue();
             }
         }
     }
@@ -55,11 +87,15 @@ public class Menu {
         System.out.println(
                         "\n   Search tool   \n" +
                         "-------------------\n" +
-                        "1. Number of rows \n" +
-                        "3. Year \n" +
-                        "4. Gender  \n" +
+                        "1. Number of results \n" +
+                        "2. Year \n" +
+                        "3. Gender  \n" +
+                        "4. Age group  \n" +
+                        "5. City moving from  \n" +
+                        "6. City moving to1  \n" +
                         "-------------------\n" +
-                        ". Complete search\n" +
+                        "7. **TEST REMOVE BEFORE TURN IN**  \n" +
+                        "8. Show results\n" +
                         "9. Show settings\n" +
                         "-------------------\n" +
                         "0. Exit program \n");
