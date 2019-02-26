@@ -1,47 +1,91 @@
 package UI;
 
+import Session.Config;
+
 import java.util.*;
 
+
 public class Menu {
+
     private boolean quit = false;
-    private int rows = 0;
-    private String aldersgruppe = "";
-    private String table = "Flytning";
-    private int årstal = 0;
-    private String gender = "";
-    private String kommune = "";
+    Config cfg = new Config();
+
 
     public void mainMenu(){
+
+
         while (!quit){
-            int choice = Input.getIntFromConsole("0. Quit\n1. Vælg antal rækker\n2. Årstal\n \n \n \n \n9. Se valg");
+
+            clearScreen();
+            showMenu();
+
+            int choice = Input.getIntFromConsole();
+
             if(choice==0){
                 quit = true;
             }
+
             else if(choice==1){
+                clearScreen();
                 chooseLimit();
             }
+
             else if(choice==2){
+                clearScreen();
                 chooseYear();
             }
+
             else if(choice==9){
-                printSettings();
+                clearScreen();
+                showSettings();
+                Input.pressToContinue();
             }
         }
     }
+
+    private void showMenu() {
+        System.out.println(
+                        "\n   Search tool   \n" +
+                        "-------------------\n" +
+                        "1. Number of rows \n" +
+                        "3. Year \n" +
+                        "4. Gender  \n" +
+                        "-------------------\n" +
+                        ". Complete search\n" +
+                        "9. Show settings\n" +
+                        "-------------------\n" +
+                        "0. Exit program \n");
+    }
+
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
     public void chooseLimit(){
-        this.rows = Input.getIntFromConsole("Vælg antal rækker");
+        System.out.println("How many rows do you want?");
+        cfg.setRows(Input.getIntFromConsole());
     }
     public void chooseYear(){
-        this.årstal = Input.getIntFromConsole("Vælg Årstal");
+        System.out.println("Vælg Årstal");
+        cfg.setYear(Input.getIntFromConsole());
     }
-    public void printSettings(){
-        System.out.println("Indstillinger, 0 = alle/ingen begræsning: \n");
-        System.out.println("Max antal resultater: "+this.rows);
-        System.out.println("Årstal: "+this.årstal);
-    }
-    public void chooseGender(){
+
+    private void showSettings() {
+        System.out.println(
+                        "\n     Settings   \n" +
+                        "-------------------");
+
+        // List of settings here
+        System.out.println("Number of results:\t" + cfg.getRows() + " (0 = ALL)");
+        System.out.println("Year:\t\t\t" + cfg.getYear());
+
+        System.out.println(
+                        "-------------------");
+
 
     }
+
 
 
 }
