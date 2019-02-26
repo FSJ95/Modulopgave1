@@ -15,13 +15,13 @@ public class Config {
 
     // Search settings.
     private int rows = 0;
-    private int ageBracket = "";
+    private int ageBracket = 0;
     private int year = 0;
-    private int gender = "";
-    private int toCity = "";
-    private int fromCity = "";
-    private int movementCity = "";
-    private int movementType = "";
+    private int gender = 0;
+    private int toCity = 0;
+    private int fromCity = 0;
+    private int movementCity = 0;
+    private int movementType = 0;
     private int chosenMenu = 1;
 
     // Konstruktor.
@@ -61,11 +61,11 @@ public class Config {
         this.rows = rows;
     }
 
-    public String getAgeBracket() {
+    public int getAgeBracket() {
         return ageBracket;
     }
 
-    public void setAgeBracket(String ageBracket) {
+    public void setAgeBracket(int ageBracket) {
         this.ageBracket = ageBracket;
     }
 
@@ -77,43 +77,43 @@ public class Config {
         this.year = year;
     }
 
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 
-    public String getToCity() {
+    public int getToCity() {
         return toCity;
     }
 
-    public void setToCity(String toCity) {
+    public void setToCity(int toCity) {
         this.toCity = toCity;
     }
 
-    public String getFromCity() {
+    public int getFromCity() {
         return fromCity;
     }
 
-    public void setFromCity(String fromCity) {
+    public void setFromCity(int fromCity) {
         this.fromCity = fromCity;
     }
 
-    public String getMovementCity() {
+    public int getMovementCity() {
         return movementCity;
     }
 
-    public void setMovementCity(String movementCity) {
+    public void setMovementCity(int movementCity) {
         this.movementCity = movementCity;
     }
 
-    public String getMovementType() {
+    public int getMovementType() {
         return movementType;
     }
 
-    public void setMovementType(String movementType) {
+    public void setMovementType(int movementType) {
         this.movementType = movementType;
     }
 

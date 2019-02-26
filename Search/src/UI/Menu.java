@@ -72,6 +72,11 @@ public class Menu {
                     case 0:
                         // QUIT PROGRAM
                         quit = true;
+                    case 11:
+                        clearScreen();
+                        dbSearch();
+                        break;
+
 
                 }
 
