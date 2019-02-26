@@ -23,7 +23,7 @@ public class Menu {
                 showToFromMenu();
 
 
-                switch (Input.getIntRangeFromConsole(0, 9)) {
+                switch (Input.getIntRangeFromConsole(0, 10)) {
                     case 1:
                         // CHANGE MENU
                         changeMenu();
@@ -72,9 +72,10 @@ public class Menu {
                     case 0:
                         // QUIT PROGRAM
                         quit = true;
-                    case 11:
+                    case 10:
                         clearScreen();
                         dbSearch();
+                        Input.pressToContinue();
                         break;
 
 
@@ -264,13 +265,21 @@ public class Menu {
         // List of settings here
         System.out.println("Number of results:\t" + cfg.getRows() + " (0 = ALL)");
         System.out.println("Year:\t\t\t" + cfg.getYear());
+        System.out.println("Gender:\t\t\t" + cfg.getGender());
+
+        if (cfg.getChosenMenu() == 1) {
+            System.out.println("Age bracket:\t\t" + cfg.getAgeBracket());
+            System.out.println("City (TO):\t\t" + cfg.getToCity());
+            System.out.println("City (FROM):\t\t" + cfg.getFromCity());
+        } else {
+            System.out.println("City:\t\t\t" + cfg.getMovementCity());
+            System.out.println("Movement type:\t\t" + cfg.getMovementType());
+        }
 
         System.out.println(
                         "-------------------");
 
-
     }
-
 
 
 }

@@ -40,7 +40,6 @@ public class Config {
     // Metode der returnerer connection.
     public Connection getConnection() {
         try {
-
             conn = DriverManager.getConnection(sqlHost, sqlUsername, sqlPassword);
 
         } catch (SQLException e) {
