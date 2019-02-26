@@ -9,7 +9,7 @@ public class Config {
 
     // Connection settings.
     private Connection conn = null;
-    private String sqlHost = "jdbc:mysql://94.231.103.32:3306/zitcom_ga_db";
+    private String sqlHost = "jdbc:mysql://94.231.103.32:3306/zitcom_ga_db?useSSL=false";
     private String sqlUsername = "zitcom_ga";
     private String sqlPassword = "fo76jatosata";
 
