@@ -35,4 +35,32 @@ public class Selection {
 
     }
 
+    public String settingOptions(String tableName, Connection conn){
+
+        String optionsPrint = "";
+
+        try{
+
+            Statement stmt = conn.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT * FROM " + tableName);
+
+            while (rs.next()){
+
+                String firstRow = rs.getString(1);
+                String secondRow = rs.getString(2);
+
+                optionsPrint = (optionsPrint + "(" + firstRow + ")" +
+                        " = " + secondRow + "\n");
+            }
+        }
+        catch (SQLException e){
+            e.getMessage();
+        }
+
+        return optionsPrint;
+
+
+    }
+
 }
