@@ -62,7 +62,8 @@ public class Menu {
                         break;
                     case 8:
                         // SHOW TABLES FROM SETTINGS
-                        System.out.println("Nothing here yet :)");
+                        clearScreen();
+                        showTables();
                         Input.pressToContinue();
                         break;
                     case 9:
@@ -234,16 +235,18 @@ public class Menu {
         cfg.setAgeBracket(Input.getIntRangeFromConsole(1, 99));
     }
 
+    // Print for showing current settings.
     private void showSettings() {
         System.out.println(
                         "\n     Settings   \n" +
                         "-------------------");
 
-        // List of settings here
+        // List of settings here.
         System.out.println("Number of results:\t" + cfg.getRows() + " (0 = ALL)");
         System.out.println("Year:\t\t\t" + select.settingValues("aarstal","aarstal_id","Aar", cfg.getYear(), cfg.getConnection()));
         System.out.println("Gender:\t\t\t" + select.settingValues("kon_type", "kon_id", "Kon", cfg.getGender(), cfg.getConnection()));
 
+        // Show different setting depending on what menu were in.
         if (cfg.getChosenMenu() == 1) {
             System.out.println("Age bracket:\t\t" + select.settingValues("aldersgruppe","aldersgruppe_id","Alder", cfg.getAgeBracket(), cfg.getConnection()));
             System.out.println("City (FROM):\t\t" + select.settingValues("kommune_navn","kommune_id","Kommune", cfg.getFromCity(), cfg.getConnection()));
@@ -257,6 +260,14 @@ public class Menu {
         System.out.println(
                         "-------------------");
 
+    }
+
+    public void showTables(){
+        if (cfg.getChosenMenu()==1){
+            System.out.println(select.toFromResults(cfg));
+        } else {
+
+        }
     }
 
 

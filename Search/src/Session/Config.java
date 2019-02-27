@@ -14,7 +14,7 @@ public class Config {
     private String sqlPassword = "fo76jatosata";
 
     // Search settings.
-    private int rows = 1;
+    private int rows = 10;
     private int ageBracket = 1;
     private int year = 1;
     private int gender = 1;
