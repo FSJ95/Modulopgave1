@@ -43,7 +43,7 @@ public class Selection {
 
             Statement stmt = conn.createStatement();
 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM " + tableName);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM " + tableName + " ORDER BY 1");
 
             while (rs.next()){
 

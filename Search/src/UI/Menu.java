@@ -153,6 +153,7 @@ public class Menu {
                         "0. Exit program. \n");
     }
 
+
     private void showMovementMenu() {
         System.out.println(
                         "\nSEARCH TOOL (MOVEMENT TYPE)\n" +
@@ -193,7 +194,7 @@ public class Menu {
     public void chooseYear(){
         System.out.println("What year do you want?");
         System.out.println(select.settingOptions("Aar", cfg.getConnection()));
-        cfg.setYear(Input.getIntRangeFromConsole(1, 16));
+        cfg.setYear(Input.getIntRangeFromConsole(1, 12));
     }
 
     public void chooseGender(){
@@ -233,36 +234,6 @@ public class Menu {
         cfg.setAgeBracket(Input.getIntRangeFromConsole(1, 99));
     }
 
-
-
-    private void dbSearch(){
-
-        try{
-
-            Connection sqlCon = cfg.getConnection();
-            Statement stmt = sqlCon.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT Aar.aarstal, Flytning.antal, til.kommune_navn AS tilKommune, fra.kommune_navn AS fraKommune, Kon.kon_type, Alder.aldersgruppe FROM Flytning INNER JOIN Kommune AS til ON Flytning.kommune_til_id = til.kommune_id INNER JOIN Kommune AS fra ON Flytning.kommune_fra_id = fra.kommune_id INNER JOIN Kon ON Flytning.kon_id = Kon.kon_id INNER JOIN Alder ON Flytning.aldersgruppe_id = Alder.aldersgruppe_id INNER JOIN Aar ON Flytning.aarstal_id = Aar.aarstal_id LIMIT 100");
-            while (rs.next()){
-                System.out.println("---------------------------------------------");
-
-                System.out.println("Antal: " + rs.getInt("antal")+
-                        " År: "+rs.getInt("aarstal")+
-                        " fra Kommune: "+rs.getString("fraKommune")+
-                        " til Kommune: "+rs.getString("tilKommune")+
-                        " Køn: "+rs.getString("kon_type")+
-                        " Aldersgruppe: "+rs.getString("aldersgruppe")
-                        );
-
-                //System.out.println("Antal" + rs.getInt("antal"));
-                System.out.println("---------------------------------------------");
-            }
-        }
-        catch (SQLException e){
-            e.getMessage();
-        }
-
-
-    }
     private void showSettings() {
         System.out.println(
                         "\n     Settings   \n" +
