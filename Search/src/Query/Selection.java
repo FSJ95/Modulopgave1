@@ -76,20 +76,19 @@ public class Selection {
 
             Statement stmt = conn.createStatement();
 
-            ResultSet rs = stmt.executeQuery("SELECT Aar.aarstal, Kon.kon_type, Alder.aldersgruppe, tilKommune.kommune_navn, fraKommune.kommune_navn, Flytning.antal FROM Flytning " +
-                                            "INNER JOIN Aar ON Flytning.aarstal_id = Aar.aarstal_id " +
-                                            "INNER JOIN Kon ON Flytning.kon_id = Kon.kon_id " +
-                                            "INNER JOIN Alder ON Flytning.aldersgruppe_id = Alder.aldersgruppe_id " +
-                                            "INNER JOIN Kommune AS tilKommune ON Flytning.kommune_til_id = tilKommune.kommune_id " +
-                                            "INNER JOIN Kommune AS fraKommune ON Flytning.kommune_fra_id = fraKommune.kommune_id " +
-                                            "WHERE Aar.aarstal_id = " + cfg.getYear() + " AND Kon.kon_id = " + cfg.getGender() + " AND Alder.aldersgruppe_id = " + cfg.getAgeBracket() + " AND tilKommune.kommune_id = " + cfg.getToCity() + " AND fraKommune.kommune_id = " + cfg.getFromCity() + " " +
+            ResultSet rs = stmt.executeQuery("SELECT Aar.aarstal, Kon.kon_type, Alder.aldersgruppe, fraKommune.kommune_navn, tilKommune.kommune_navn, Flytning.antal FROM Flytning\n" +
+                                            "INNER JOIN Aar ON Flytning.aarstal_id = Aar.aarstal_id\n" +
+                                            "INNER JOIN Kon ON Flytning.kon_id = Kon.kon_id\n" +
+                                            "INNER JOIN Alder ON Flytning.aldersgruppe_id = Alder.aldersgruppe_id\n" +
+                                            "INNER JOIN Kommune AS fraKommune ON Flytning.kommune_fra_id = fraKommune.kommune_id\n" +
+                                            "INNER JOIN Kommune AS tilKommune ON Flytning.kommune_til_id = tilKommune.kommune_id\n" +
+                                            "WHERE Aar.aarstal_id=" + cfg.getYear() + " AND Kon.kon_id=" + cfg.getGender() + " AND Alder.aldersgruppe_id=" + cfg.getAgeBracket() + " AND fraKommune.kommune_id=" + cfg.getFromCity() + " AND tilKommune.kommune_id=" + cfg.getToCity() + "\n" +
                                             "LIMIT " + cfg.getRows());
-
 
             while (rs.next()){
 
-                toFromPrint = toFromPrint + (rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) +
-                        " " + rs.getString(4) + " " + rs.getString(5) + " " + rs.getString(6));
+                toFromPrint = toFromPrint + (rs.getString(1) + "  " + rs.getString(2) + "  " + rs.getString(3) +
+                        "  " + rs.getString(4) + "  " + rs.getString(5) + "  " + rs.getString(6));
             }
 
 

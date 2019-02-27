@@ -210,17 +210,19 @@ public class Menu {
         cfg.setMovementCity(Input.getIntRangeFromConsole(1, 99));
     }
 
+    public void chooseFromCity(){
+        System.out.println("What city do you want?");
+        System.out.println(select.settingOptions("Kommune", cfg.getConnection()));
+        cfg.setFromCity(Input.getIntRangeFromConsole(1, 99));
+    }
+
     public void chooseToCity(){
         System.out.println("What city do you want?");
         System.out.println(select.settingOptions("Kommune", cfg.getConnection()));
         cfg.setToCity(Input.getIntRangeFromConsole(1, 99));
     }
 
-    public void chooseFromCity(){
-        System.out.println("What city do you want?");
-        System.out.println(select.settingOptions("Kommune", cfg.getConnection()));
-        cfg.setFromCity(Input.getIntRangeFromConsole(1, 99));
-    }
+
 
     public void chooseMovementType(){
         System.out.println("What movement type do you want?");
@@ -254,7 +256,7 @@ public class Menu {
 
         } else {
             System.out.println("City:\t\t\t" + select.settingValues("kommune_navn","kommune_id","Kommune", cfg.getMovementCity(), cfg.getConnection()));
-            System.out.println("Movement type:\t\t" + cfg.getMovementType() + " MANGLER AT IMPORTERE");
+            System.out.println("Movement type:\t\t" + cfg.getMovementType() + " - MANGLER AT IMPORTERE");
         }
 
         System.out.println(
