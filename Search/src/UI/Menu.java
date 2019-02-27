@@ -74,11 +74,6 @@ public class Menu {
                     case 0:
                         // QUIT PROGRAM
                         quit = true;
-                    case 10:
-                        clearScreen();
-                        dbSearch();
-                        Input.pressToContinue();
-                        break;
 
 
                 }
