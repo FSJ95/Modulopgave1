@@ -17,20 +17,26 @@ public class Selection {
 
         String settingName = "";
 
-        try{
+        if (value == 0) {
+            settingName = "ALL OPTIONS";
+        } else {
+            try{
 
-            Statement stmt = conn.createStatement();
+                Statement stmt = conn.createStatement();
 
-            ResultSet rs = stmt.executeQuery("SELECT " + cn1 +
-                    " FROM " + tableName + " WHERE " + tableName + "." + cn2 +
-                    "=" + value + " ORDER BY " + cn1);
-            while (rs.next()){
-                settingName = rs.getString(1);
+                ResultSet rs = stmt.executeQuery("SELECT " + cn1 +
+                        " FROM " + tableName + " WHERE " + tableName + "." + cn2 +
+                        "=" + value + " ORDER BY " + cn1);
+                while (rs.next()){
+                    settingName = rs.getString(1);
+                }
+            }
+            catch (SQLException e){
+                e.getMessage();
             }
         }
-        catch (SQLException e){
-            e.getMessage();
-        }
+
+
 
         return settingName;
 
