@@ -135,5 +135,63 @@ public class Selection {
         return toFromPrint;
     }
 
+    public String movementResults(Config cfg) {
+
+
+        String movementPrint = "";
+
+        try{
+
+            Connection conn = cfg.getConnection();
+
+            Statement stmt = conn.createStatement();
+
+            String conditions = "";
+            String limitStr = "";
+            if(cfg.getRows()>0){
+                limitStr = " LIMIT "+cfg.getRows();
+            }
+            if(cfg.getYear()>0){
+                conditions += " Aar.aarstal_id=" + cfg.getYear() + " AND ";
+            }
+            if(cfg.getGender()>0){
+                conditions += " Kon.kon_id=" + cfg.getGender()+" AND ";
+            }
+            if(cfg.getMovementCity()>0){
+                conditions += " Kommune.kommune_id=" + cfg.getFromCity() + " AND ";
+            }
+            if(cfg.getMovementType()>0){
+                conditions += " Bevaegelse.bevaegelse_id=" + cfg.getMovementType() + " AND ";
+            }
+            if(!conditions.equals("")){
+                conditions = "WHERE " + conditions;
+                conditions = conditions.substring(0, conditions.length()-5 );
+            }
+
+            ResultSet rs = stmt.executeQuery("SELECT DISTINCT Aar.aarstal, Kon.kon_type, Kommune.kommune_navn, Flytningstype.antal FROM Flytningstype\n" +
+                    "INNER JOIN Aar ON Flytningstype.aarstal_id = Aar.aarstal_id\n" +
+                    "INNER JOIN Kon ON Flytningstype.kon_id = Kon.kon_id\n" +
+                    "INNER JOIN Alder ON Flytningstype.aldersgruppe_id = Alder.aldersgruppe_id\n" +
+                    "INNER JOIN Kommune ON Flytningstype.kommune_fra_id = Kommune.kommune_id\n" +
+                    "INNER JOIN Bevaegelse ON Flytningstype.bevaegelse_id = Bevaegelse.bevaegelse_id\n" +
+                    conditions +" "+
+                    limitStr);
+
+            while (rs.next()){
+
+                movementPrint = movementPrint + (rs.getString(1) + "  " + rs.getString(2) + "  " + rs.getString(3) +
+                        "  " + rs.getString(4) + "  " + rs.getString(5) + "\n");
+            }
+
+
+
+        }
+        catch (SQLException e){
+            e.getMessage();
+        }
+
+        return movementPrint;
+    }
+
 
 }

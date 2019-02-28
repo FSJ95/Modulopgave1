@@ -115,7 +115,8 @@ public class Menu {
                         break;
                     case 8:
                         // SHOW TABLES FROM SETTINGS
-                        System.out.println("Nothing here yet :)");
+                        clearScreen();
+                        showTables();
                         Input.pressToContinue();
                         break;
                     case 9:
@@ -262,7 +263,7 @@ public class Menu {
 
         } else {
             System.out.println("City:\t\t\t" + select.settingValues("kommune_navn","kommune_id","Kommune", cfg.getMovementCity(), cfg.getConnection()));
-            System.out.println("Movement type:\t\t" + cfg.getMovementType() + " - MANGLER AT IMPORTERE");
+            System.out.println("Movement type:\t\t" + select.settingValues("bevaegelse_typer","bevaegelse_id","Bevaegelse", cfg.getMovementType(), cfg.getConnection()));
         }
 
         System.out.println(
@@ -274,7 +275,7 @@ public class Menu {
         if (cfg.getChosenMenu()==1){
             System.out.println(select.toFromResults(cfg));
         } else {
-
+            System.out.println(select.movementResults(cfg));
         }
     }
 
