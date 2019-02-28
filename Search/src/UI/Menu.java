@@ -194,47 +194,53 @@ public class Menu {
     }
     public void chooseYear(){
         System.out.println("What year do you want?");
+        System.out.println("(0) = All of them");
         System.out.println(select.settingOptions("Aar", cfg.getConnection()));
-        cfg.setYear(Input.getIntRangeFromConsole(1, 12));
+        cfg.setYear(Input.getIntRangeFromConsole(0, 12));
     }
 
     public void chooseGender(){
         System.out.println("What gender do you want?");
+        System.out.println("(0) = All of them");
         System.out.println(select.settingOptions("Kon", cfg.getConnection()));
-        cfg.setGender(Input.getIntRangeFromConsole(1, 2));
+        cfg.setGender(Input.getIntRangeFromConsole(0, 2));
     }
 
     public void chooseCity(){
         System.out.println("What city do you want?");
+        System.out.println("(0) = All of them");
         System.out.println(select.settingOptions("Kommune", cfg.getConnection()));
-        cfg.setMovementCity(Input.getIntRangeFromConsole(1, 99));
+        cfg.setMovementCity(Input.getIntRangeFromConsole(0, 99));
     }
 
     public void chooseFromCity(){
         System.out.println("What city do you want?");
+        System.out.println("(0) = All of them");
         System.out.println(select.settingOptions("Kommune", cfg.getConnection()));
-        cfg.setFromCity(Input.getIntRangeFromConsole(1, 99));
+        cfg.setFromCity(Input.getIntRangeFromConsole(0, 99));
     }
 
     public void chooseToCity(){
         System.out.println("What city do you want?");
+        System.out.println("(0) = All of them");;
         System.out.println(select.settingOptions("Kommune", cfg.getConnection()));
-        cfg.setToCity(Input.getIntRangeFromConsole(1, 99));
+        cfg.setToCity(Input.getIntRangeFromConsole(0, 99));
     }
 
 
 
     public void chooseMovementType(){
         System.out.println("What movement type do you want?");
-        System.out.println("(NOT ADDED YET)");
-        //System.out.println(select.settingOptions("Bevaegelse", cfg.getConnection()));
-        cfg.setMovementType(Input.getIntRangeFromConsole(1, 99));
+        System.out.println("(0) = All of them");
+        System.out.println(select.settingOptions("Bevaegelse", cfg.getConnection()));
+        cfg.setMovementType(Input.getIntRangeFromConsole(0, 99));
     }
 
     public void chooseAgeBracket(){
-        System.out.println("What movement type do you want?");
+        System.out.println("What age group do you want?");
+        System.out.println("(0) = All of them");
         System.out.println(select.settingOptions("Alder", cfg.getConnection()));
-        cfg.setAgeBracket(Input.getIntRangeFromConsole(1, 99));
+        cfg.setAgeBracket(Input.getIntRangeFromConsole(0, 99));
     }
 
     // Print for showing current settings.

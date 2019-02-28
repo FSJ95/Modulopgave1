@@ -110,7 +110,7 @@ public class Selection {
                                             "WHERE Aar.aarstal_id=" + cfg.getYear() + " AND Kon.kon_id=" + cfg.getGender() + " AND Alder.aldersgruppe_id=" + cfg.getAgeBracket() + " AND fraKommune.kommune_id=" + cfg.getFromCity() + " AND tilKommune.kommune_id=" + cfg.getToCity() + "\n" +
                                             limitStr);
 */
-            ResultSet rs = stmt.executeQuery("SELECT Aar.aarstal, Kon.kon_type, Alder.aldersgruppe, fraKommune.kommune_navn, tilKommune.kommune_navn, Flytning.antal FROM Flytning\n" +
+            ResultSet rs = stmt.executeQuery("SELECT DISTINCT Aar.aarstal, Kon.kon_type, Alder.aldersgruppe, fraKommune.kommune_navn, tilKommune.kommune_navn, Flytning.antal FROM Flytning\n" +
                     "INNER JOIN Aar ON Flytning.aarstal_id = Aar.aarstal_id\n" +
                     "INNER JOIN Kon ON Flytning.kon_id = Kon.kon_id\n" +
                     "INNER JOIN Alder ON Flytning.aldersgruppe_id = Alder.aldersgruppe_id\n" +
