@@ -14,14 +14,14 @@ public class Config {
     private String sqlPassword = "fo76jatosata";
 
     // Search settings.
-    private int rows = 10;
-    private int ageBracket = 1;
-    private int year = 1;
-    private int gender = 1;
-    private int toCity = 1;
-    private int fromCity = 1;
-    private int movementCity = 1;
-    private int movementType = 1;
+    private int rows = 0;
+    private int ageBracket = 0;
+    private int year = 0;
+    private int gender = 0;
+    private int toCity = 0;
+    private int fromCity = 0;
+    private int movementCity = 0;
+    private int movementType = 0;
     private int chosenMenu = 1;
 
     // Konstruktor.
