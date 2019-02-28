@@ -25,7 +25,7 @@ public class Menu {
                 showToFromMenu();
 
 
-                switch (Input.getIntRangeFromConsole(0, 10)) {
+                switch (Input.getIntRangeFromConsole(0, 9)) {
                     case 1:
                         // CHANGE MENU
                         changeMenu();
@@ -274,7 +274,7 @@ public class Menu {
     public void showTables(){
         if (cfg.getChosenMenu()==1){
             System.out.println(select.toFromResults(cfg));
-        } else {
+        } else if (cfg.getChosenMenu() == 2) {
             System.out.println(select.movementResults(cfg));
         }
     }

@@ -148,6 +148,7 @@ public class Selection {
 
             String conditions = "";
             String limitStr = "";
+
             if(cfg.getRows()>0){
                 limitStr = " LIMIT "+cfg.getRows();
             }
@@ -158,7 +159,7 @@ public class Selection {
                 conditions += " Kon.kon_id=" + cfg.getGender()+" AND ";
             }
             if(cfg.getMovementCity()>0){
-                conditions += " Kommune.kommune_id=" + cfg.getFromCity() + " AND ";
+                conditions += " Kommune.kommune_id=" + cfg.getMovementCity() + " AND ";
             }
             if(cfg.getMovementType()>0){
                 conditions += " Bevaegelse.bevaegelse_id=" + cfg.getMovementType() + " AND ";
@@ -168,18 +169,18 @@ public class Selection {
                 conditions = conditions.substring(0, conditions.length()-5 );
             }
 
-            ResultSet rs = stmt.executeQuery("SELECT DISTINCT Aar.aarstal, Kon.kon_type, Kommune.kommune_navn, Flytningstype.antal FROM Flytningstype\n" +
+            ResultSet rs = stmt.executeQuery("SELECT DISTINCT" +
+                    " Aar.aarstal, Kon.kon_type, Kommune.kommune_navn, Bevaegelse.bevaegelse_typer, Flytningstype.antal FROM Flytningstype\n" +
                     "INNER JOIN Aar ON Flytningstype.aarstal_id = Aar.aarstal_id\n" +
                     "INNER JOIN Kon ON Flytningstype.kon_id = Kon.kon_id\n" +
-                    "INNER JOIN Alder ON Flytningstype.aldersgruppe_id = Alder.aldersgruppe_id\n" +
-                    "INNER JOIN Kommune ON Flytningstype.kommune_fra_id = Kommune.kommune_id\n" +
+                    "INNER JOIN Kommune ON Flytningstype.kommune_id = Kommune.kommune_id\n" +
                     "INNER JOIN Bevaegelse ON Flytningstype.bevaegelse_id = Bevaegelse.bevaegelse_id\n" +
                     conditions +" "+
                     limitStr);
 
             while (rs.next()){
 
-                movementPrint = movementPrint + (rs.getString(1) + "  " + rs.getString(2) + "  " + rs.getString(3) +
+                movementPrint += (rs.getString(1) + "  " + rs.getString(2) + "  " + rs.getString(3) +
                         "  " + rs.getString(4) + "  " + rs.getString(5) + "\n");
             }
 
