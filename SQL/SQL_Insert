@@ -1,0 +1,7 @@
+INSERT INTO Flytning (antal, kon_id, aarstal_id, aldersgruppe_id, kommune_til_id, kommune_fra_id)
+SELECT antal, Kon.kon_id, Aar.aarstal_id, Alder.aldersgruppe_id, Kommune.kommune_id AS tilKommune, fraKommune.kommune_id AS fraKommune FROM zitcom_ga_db.tiloutput
+INNER JOIN Kon ON tiloutput.køn = Kon.kon_type
+INNER JOIN Aar ON tiloutput.aar = Aar.aarstal
+INNER JOIN Alder ON tiloutput.alder = Alder.aldersgruppe
+INNER JOIN Kommune ON tiloutput.tilflytningskommune = Kommune.kommune_navn
+INNER JOIN Kommune AS fraKommune ON tiloutput.fraflytningskommune = fraKommune.kommune_navn
